@@ -2,7 +2,7 @@
 PROJECT(fftshift)
 
 # set the name of the input image used to run the test
-SET(INPUT_IMAGE ${CMAKE_SOURCE_DIR}/images/cthead1.png)
+SET(INPUT_IMAGE ${CMAKE_SOURCE_DIR}/images/fft.png)
 
 #include some macros from another file...
 INCLUDE(IJMacros.txt)
