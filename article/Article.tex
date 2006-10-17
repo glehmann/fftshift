@@ -33,16 +33,17 @@ colorlinks,linkcolor={blue},citecolor={blue},urlcolor={blue},
 
 % The title should be descriptive enough for people to be able to find
 % the relevant document. 
-\title{}
+\title{FFT shift}
 
 % Increment the release number whenever significant changes are made.
 % The author and/or editor can define 'significant' however they like.
-\release{0.00}
+% \release{0.00}
 
 % At minimum, give your name and an email address.  You can include a
 % snail-mail address if you like.
-\author{}
-\authoraddress{}
+\author{Ga\"etan Lehmann}
+\authoraddress{INRA, UMR 1198; ENVA; CNRS, FRE 2857, Biologie du D\'eveloppement et
+Reproduction, Jouy en Josas, F-78350, France}
 
 \begin{document}
 \maketitle
@@ -56,36 +57,54 @@ colorlinks,linkcolor={blue},citecolor={blue},urlcolor={blue},
 \noindent
 % The abstract should be a paragraph or two long, and describe the
 % scope of the document.
+
+A common usage when working with Fourier transform is to shift the
+the image to put the zero-frequency component in the center of the
+image. This contribution comes with a filter to perform this
+transform.
 \end{abstract}
 
-\tableofcontents
+% \tableofcontents
 
-
-% \url{http://www.itk.org}
-% \code{Insight/Documentation/Style.pdf}
-% \section{Principles of Solar Spot Detection}
-% \cite{ITKSoftwareGuide}.
-% \doxygen{ImageToImageFilter}
-
-% \small \begin{verbatim}
-% \end{verbatim} \normalsize
-
-
-% The {itemize} environment uses a bullet for each \item.  If you want the 
-% \item's numbered, use the {enumerate} environment instead.
-% \begin{itemize}
-%   \item  Insight Toolkit 2.4.
-%   \item  CMake 2.2
-% \end{itemize}
-
-% \ref{cthead1}
+This filter is multitreaded and works with any dimensions or size of image.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics{cthead1}
-\caption{The input image.\label{cthead1}}
+\includegraphics[scale=0.3]{fft}
+\caption{The input image.}
 \end{figure}
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=0.3]{test}
+\caption{The shifted image.}
+\end{figure}
+
+When the size of the image is odd on one dimension or more, performing the
+transform twice will not produce the same image than the input, as shown in
+the figure below. To get it right, the option \verb$SetInverse(true)$ has
+to be used.
+
+The filter is very simple, and there shouldn't be any problem to use it. Please
+look at check.cxx in the tar ball for an example.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=4]{5X5}
+\caption{The input image (size = 5 x 5).}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=10]{shifted5X5}
+\caption{The shifted image.}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[scale=10]{nonInverse5X5}
+\caption{The image shifted twice without using SetInverse(true) for the second transform.}
+\end{figure}
 
 \appendix
 

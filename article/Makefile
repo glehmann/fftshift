@@ -1,6 +1,6 @@
 
 # you should use the title of the article instead
-ARTICLE_TITLE = A Great Article For The Insight Journal
+ARTICLE_TITLE = FFT shift
 
 # spaces are not allowed
 empty:=
@@ -11,6 +11,7 @@ NAME = Article
 
 BIBS=$(wildcard *.bib)
 
+BMPS=$(notdir $(wildcard ../images/*.bmp))
 PNGS=$(notdir $(wildcard ../images/*.png))
 JPGS=$(notdir $(wildcard ../images/*.jpg))
 DIAS=$(notdir $(wildcard ../images/*.dia))
@@ -19,7 +20,7 @@ EPSS=$(notdir $(wildcard ../images/*.eps))
 TIFS=$(notdir $(wildcard ../images/*.tif))
 PLOTS=$(notdir $(wildcard ../images/*.gnuplot))
 
-OUTPUT_EPS=$(PNGS:png=eps) $(JPGS:jpg=eps) $(DIAS:dia=eps) $(FIGS:fig=eps) $(TIFS:tif=eps) $(PLOTS:gnuplot=eps) $(EPSS)
+OUTPUT_EPS=$(PNGS:png=eps) $(BMPS:bmp=eps) $(JPGS:jpg=eps) $(DIAS:dia=eps) $(FIGS:fig=eps) $(TIFS:tif=eps) $(PLOTS:gnuplot=eps) $(EPSS)
 
 all: pdf
 
@@ -30,6 +31,9 @@ dvi: ${NAME}.dvi
 bbl: ${NAME}.bbl
 eps: $(OUTPUT_EPS)
 
+
+%.eps: ../images/%.bmp
+	convert $< $@
 
 %.eps: ../images/%.png
 	convert $< $@
