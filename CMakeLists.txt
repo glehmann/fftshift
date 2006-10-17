@@ -76,5 +76,14 @@ ENDIF(BUILD_TESTING)
 #any tests you can comment out or delete the following line.
 # ADD_TEST(Testname ExecutableToRun arg1 arg2 arg3)
 
-ADD_TEST(Run check ${INPUT_IMAGE} out.png)
+ADD_TEST(Run check ${INPUT_IMAGE} out.png 0)
 ADD_TEST(CompareImage ${IMAGE_COMPARE} out.png ${CMAKE_SOURCE_DIR}/images/test.png)
+ADD_TEST(InverseRun check ${CMAKE_SOURCE_DIR}/images/test.png out2.png 1)
+ADD_TEST(InverseCompareImage ${IMAGE_COMPARE} out2.png ${INPUT_IMAGE})
+
+ADD_TEST(OddRun check ${CMAKE_SOURCE_DIR}/images/5X5.bmp shifted5X5.png 0)
+ADD_TEST(OddCompareImage ${IMAGE_COMPARE} shifted5X5.png ${CMAKE_SOURCE_DIR}/images/shifted5X5.png)
+ADD_TEST(InverseOddRun check ${CMAKE_SOURCE_DIR}/images/shifted5X5.png 5X5.png 1)
+ADD_TEST(InverseOddCompareImage ${IMAGE_COMPARE} 5X5.png ${CMAKE_SOURCE_DIR}/images/5X5.bmp)
+ADD_TEST(NonInverseOddRun check ${CMAKE_SOURCE_DIR}/images/shifted5X5.png nonInverse5X5.png 0)
+ADD_TEST(NonInverseOddCompareImage ${IMAGE_COMPARE} nonInverse5X5.png ${CMAKE_SOURCE_DIR}/images/nonInverse5X5.png)
