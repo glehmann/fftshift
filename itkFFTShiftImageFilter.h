@@ -17,7 +17,6 @@
 #ifndef __itkFFTShiftImageFilter_h
 #define __itkFFTShiftImageFilter_h
 
-#include "itkCommand.h"
 #include "itkImageToImageFilter.h"
 
 namespace itk {
