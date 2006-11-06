@@ -14,11 +14,12 @@ int main(int argc, char * argv[])
     std::cerr << "usage: " << argv[0] << " inputImage outputImage inverse" << std::endl;
     std::cerr << "  inputImage: The input image." << std::endl;
     std::cerr << "  outputImage: The output image." << std::endl;
-    std::cerr << "  inverse: 0, to perform a forward transform, or 1 to perform a inverse transform." << std::endl;
+    std::cerr << "  inverse: 0, to perform a forward transform, or 1 to perform" << std::endl;
+    std::cerr << "           an inverse transform." << std::endl;
     exit(1);
     }
 
-  const int dim = 2;
+  const int dim = 3;
   
   typedef itk::RGBPixel< unsigned char > PType;
   typedef itk::Image< PType, dim > IType;
