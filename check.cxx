@@ -6,8 +6,15 @@
 #include "itkFFTShiftImageFilter.h"
 
 
-int main(int, char * argv[])
+int main(int argc, char * argv[])
 {
+
+  if( argc !=  )
+    {
+    std::cerr << "usage: " << argv[0] << " " << std::endl;
+    // std::cerr << "  : " << std::endl;
+    }
+
   const int dim = 2;
   
   typedef itk::RGBPixel< unsigned char > PType;
