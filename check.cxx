@@ -9,10 +9,12 @@
 int main(int argc, char * argv[])
 {
 
-  if( argc !=  )
+  if( argc != 4 )
     {
-    std::cerr << "usage: " << argv[0] << " " << std::endl;
-    // std::cerr << "  : " << std::endl;
+    std::cerr << "usage: " << argv[0] << " inputImage outputImage inverse" << std::endl;
+    std::cerr << "  inputImage: The input image." << std::endl;
+    std::cerr << "  outputImage: The output image." << std::endl;
+    std::cerr << "  inverse: 0, to perform a forward transform, or 1 to perform a inverse transform." << std::endl;
     exit(1);
     }
 
