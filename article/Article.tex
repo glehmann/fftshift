@@ -68,18 +68,6 @@ transform.
 
 This filter is multitreaded and works with any dimensions or size of image.
 
-\begin{figure}[htbp]
-\centering
-\includegraphics[scale=0.3]{fft}
-\caption{The input image.}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[scale=0.3]{test}
-\caption{The shifted image.}
-\end{figure}
-
 When the size of the image is odd on one dimension or more, performing the
 transform twice will not produce the same image than the input, as shown in
 the figure below. To get it right, the option \verb$SetInverse(true)$ has
@@ -90,20 +78,18 @@ look at check.cxx in the tar ball for an example.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[scale=4]{5X5}
-\caption{The input image (size = 5 x 5).}
+\subfigure[input image]{\includegraphics[scale=0.4]{fft}}
+\subfigure[shifted image. The zero components are now centered.]{\includegraphics[scale=0.4]{test}}
+\caption{Result of the transform on the log of the modulus of the fft transform of a real image.}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[scale=10]{shifted5X5}
-\caption{The shifted image.}
-\end{figure}
-
-\begin{figure}[htbp]
-\centering
-\includegraphics[scale=10]{nonInverse5X5}
-\caption{The image shifted twice without using SetInverse(true) for the second transform.}
+\subfigure[input image]{\includegraphics[scale=15]{5X5}}
+\subfigure[shifted image, with Inverse = false]{\includegraphics[scale=38.1]{shifted5X5}}
+\subfigure[the image shifted twice, with Inverse = false for the first run, and Inverse = true for the second]{\includegraphics[scale=15]{5X5}}
+\subfigure[the imageshifted twice, with Inverse = false for both the first and the second run. The input image is not restored.]{\includegraphics[scale=38.1]{nonInverse5X5}}
+\caption{Result of the transforms on an image with an odd size (5x5).}
 \end{figure}
 
 \appendix
