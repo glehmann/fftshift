@@ -66,15 +66,15 @@ transform.
 
 % \tableofcontents
 
-This filter is multitreaded and works with any dimensions or size of image.
+\section{Description}
+
+This filter is multitreaded and works with any dimensions or size of image, and with any pixel type.
+It is very similar to the fftshift and ifftshift function of matlab.
 
 When the size of the image is odd on one dimension or more, performing the
 transform twice will not produce the same image than the input, as shown in
-the figure below. To get it right, the option \verb$SetInverse(true)$ has
+the Figure 2. To get it right, the option \verb$SetInverse(true)$ has
 to be used.
-
-The filter is very simple, and there shouldn't be any problem to use it. Please
-look at check.cxx in the tar ball for an example.
 
 \begin{figure}[htbp]
 \centering
@@ -91,6 +91,60 @@ look at check.cxx in the tar ball for an example.
 \subfigure[the imageshifted twice, with Inverse = false for both the first and the second run. The input image is not restored.]{\includegraphics[scale=38.1]{nonInverse5X5}}
 \caption{Result of the transforms on an image with an odd size (5x5).}
 \end{figure}
+
+
+\section{Code sample}
+
+The filter is very simple, and there shouldn't be any problem to use it. Please
+look at check.cxx in the tar ball for an example.
+
+\small \begin{verbatim}
+#include "itkImageFileReader.h"
+#include "itkImageFileWriter.h"
+#include "itkCommand.h"
+#include "itkSimpleFilterWatcher.h"
+#include "itkRGBPixel.h"
+#include "itkFFTShiftImageFilter.h"
+
+
+int main(int argc, char * argv[])
+{
+
+  if( argc != 4 )
+    {
+    std::cerr << "usage: " << argv[0] << " inputImage outputImage inverse" << std::endl;
+    std::cerr << "  inputImage: The input image." << std::endl;
+    std::cerr << "  outputImage: The output image." << std::endl;
+    std::cerr << "  inverse: 0, to perform a forward transform, or 1 to perform" << std::endl;
+    std::cerr << "           an inverse transform." << std::endl;
+    exit(1);
+    }
+
+  const int dim = 3;
+  
+  typedef itk::RGBPixel< unsigned char > PType;
+  typedef itk::Image< PType, dim > IType;
+
+  typedef itk::ImageFileReader< IType > ReaderType;
+  ReaderType::Pointer reader = ReaderType::New();
+  reader->SetFileName( argv[1] );
+
+  typedef itk::FFTShiftImageFilter< IType, IType > FilterType;
+  FilterType::Pointer filter = FilterType::New();
+  filter->SetInput( reader->GetOutput() );
+  filter->SetInverse( atoi( argv[3] ) );
+
+  itk::SimpleFilterWatcher watcher(filter, "filter");
+
+  typedef itk::ImageFileWriter< IType > WriterType;
+  WriterType::Pointer writer = WriterType::New();
+  writer->SetInput( filter->GetOutput() );
+  writer->SetFileName( argv[2] );
+  writer->Update();
+
+  return 0;
+}
+\end{verbatim} \normalsize
 
 \appendix
 
