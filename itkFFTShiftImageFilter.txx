@@ -71,7 +71,7 @@ FFTShiftImageFilter<TInputImage, TOutputImage>
     {
     if( oSize[i] % 2 == 1 )
       {
-      if( m_Inverse )
+      if( !m_Inverse )
         {
         seg1Size[i] = oSize[i] / 2 + 1;
         seg2Size[i] = oSize[i] / 2;
