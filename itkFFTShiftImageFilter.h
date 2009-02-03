@@ -30,7 +30,7 @@ namespace itk {
  * Note that with images with odd size, applying this filter twice will not produce the same image
  * than the original one without using SetInverse(true) on one (and only one) of the two filters.
  *
- * \author Gaëtan Lehmann. Biologie du Développement et de la Reproduction, INRA de Jouy-en-Josas, France.
+ * \author Gaetan Lehmann. Biologie du Developpement et de la Reproduction, INRA de Jouy-en-Josas, France.
  *
  * \sa FFTRealToComplexConjugateImageFilter, FFTComplexConjugateToRealImageFilter, FFTWRealToComplexConjugateImageFilter, FFTWComplexConjugateToRealImageFilter, Log10ImageFilter, RescaleIntensityImageFilter
  */
