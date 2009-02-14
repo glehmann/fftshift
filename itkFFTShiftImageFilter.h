@@ -32,7 +32,7 @@ namespace itk {
  *
  * \author Gaetan Lehmann. Biologie du Developpement et de la Reproduction, INRA de Jouy-en-Josas, France.
  *
- * \sa FFTRealToComplexConjugateImageFilter, FFTComplexConjugateToRealImageFilter, FFTWRealToComplexConjugateImageFilter, FFTWComplexConjugateToRealImageFilter, Log10ImageFilter, RescaleIntensityImageFilter
+ * \sa FFTRealToComplexConjugateImageFilter, FFTComplexConjugateToRealImageFilter, Log10ImageFilter, RescaleIntensityImageFilter
  */
 template<class TInputImage, class TOutputImage>
 class ITK_EXPORT FFTShiftImageFilter : 
@@ -40,15 +40,15 @@ class ITK_EXPORT FFTShiftImageFilter :
 {
 public:
   /** Standard class typedefs. */
-  typedef FFTShiftImageFilter Self;
+  typedef FFTShiftImageFilter       Self;
   typedef ImageToImageFilter<TInputImage, TOutputImage>
-  Superclass;
+                                    Superclass;
   typedef SmartPointer<Self>        Pointer;
   typedef SmartPointer<const Self>  ConstPointer;
 
   /** Some convenient typedefs. */
-  typedef TInputImage InputImageType;
-  typedef TOutputImage OutputImageType;
+  typedef TInputImage                              InputImageType;
+  typedef TOutputImage                             OutputImageType;
   typedef typename InputImageType::Pointer         InputImagePointer;
   typedef typename InputImageType::ConstPointer    InputImageConstPointer;
   typedef typename InputImageType::RegionType      InputImageRegionType;
@@ -89,13 +89,13 @@ protected:
   /** FFTShiftImageFilter needs the entire input be
    * available. Thus, it needs to provide an implementation of
    * GenerateInputRequestedRegion(). */
-  void GenerateInputRequestedRegion() ;
+  void GenerateInputRequestedRegion();
 
 
   /** Multi-thread version GenerateData. */
   void  ThreadedGenerateData (const OutputImageRegionType& 
                               outputRegionForThread,
-                              int threadId) ;
+                              int threadId);
   
 
 private:
@@ -104,7 +104,7 @@ private:
 
   bool m_Inverse;
 
-} ; // end of class
+}; // end of class
 
 } // end namespace itk
   
@@ -113,5 +113,3 @@ private:
 #endif
 
 #endif
-
-
